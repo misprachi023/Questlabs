@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Flex,
@@ -7,14 +7,21 @@ import {
   Input,
   Button,
   Link,
-  Stack,
   useColorModeValue,
   VStack,
   HStack,
+  IconButton,
+  Icon,
 } from "@chakra-ui/react";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const textColor = useColorModeValue("white", "whiteAlpha.900");
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   return (
     <Box bg={"black"} minH="100vh" color={textColor}>
@@ -22,7 +29,7 @@ const Navbar = () => {
         position={"sticky"}
         top={0}
         as="header"
-        justifyContent="space-around"
+        justifyContent="space-between"
         alignItems="center"
         className="blur"
         p={5}
@@ -38,7 +45,20 @@ const Navbar = () => {
             Quest
           </Flex>
         </Box>
-        <Flex alignItems="center">
+        {/* Hamburger Menu Icon */}
+        <IconButton
+          display={{ base: "flex", md: "none" }}
+          onClick={toggleMenu}
+          icon={<Icon as={GiHamburgerMenu} />}
+          aria-label="Open menu"
+          variant="ghost"
+          color="black"
+        />
+        {/* Menu Links */}
+        <Flex
+          display={{ base: isMenuOpen ? "flex" : "none", md: "flex" }}
+          alignItems="center"
+        >
           <Link href="#playbook" mx={2}>
             Playbook
           </Link>
@@ -49,7 +69,8 @@ const Navbar = () => {
             Blogs
           </Link>
         </Flex>
-        <Flex>
+        {/* Buttons */}
+        <Flex display={{ base: "none", md: "flex" }}>
           <Button
             border={"1px solid rgba(144, 53, 255, 0.835)"}
             variant="ghost"
@@ -69,6 +90,49 @@ const Navbar = () => {
           </Button>
         </Flex>
       </Flex>
+      {/* Responsive Menu */}
+      {isMenuOpen && (
+        <Flex
+          bg="black"
+          color="white"
+          py={4}
+          flexDirection="column"
+          alignItems="center"
+          display={{ base: "flex", md: "none" }}
+        >
+          <Link href="#playbook" mx={2} my={1} onClick={toggleMenu}>
+            Playbook
+          </Link>
+          <Link href="#resources" mx={2} my={1} onClick={toggleMenu}>
+            Resources
+          </Link>
+          <Link href="#blogs" mx={2} my={1} onClick={toggleMenu}>
+            Blogs
+          </Link>
+          <Button
+            border={"1px solid rgba(144, 53, 255, 0.835)"}
+            variant="ghost"
+            color={"white"}
+            mx={2}
+            mt={4}
+            onClick={toggleMenu}
+          >
+            Get Started
+          </Button>
+          <Button
+            color={"white"}
+            background={
+              "linear-gradient(to left, rgba(33, 117, 243, 0.82), rgba(144, 53, 255, 0.835), rgba(144, 53, 255, 0.843))"
+            }
+            mx={2}
+            mt={4}
+            onClick={toggleMenu}
+          >
+            Book Demo
+          </Button>
+        </Flex>
+      )}
+      {/* Main Content */}
       <Box
         backgroundRepeat={"no-repeat"}
         backgroundSize={"contain"}
