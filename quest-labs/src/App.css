@@ -1,0 +1,15 @@
+.app{
+    background-image: url(https://www.questlabs.ai/assets/prod_bg-F1TqfWXJ.png);
+}
+body{
+    background-color: rgb(2, 10, 47);
+}
+
+.blur {
+    background-color: rgba(94, 94, 94, 0.212);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+  }
+  .shadow{
+    box-shadow: rgba(166, 0, 243, 0.521) 0px 22px 70px 4px;
+  }
