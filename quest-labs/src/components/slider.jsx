@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Flex,
+  Stack,
   Box,
   Text,
   HStack,
@@ -8,7 +9,6 @@ import {
   VStack,
   Image,
 } from "@chakra-ui/react";
-
 const reviewsData = [
   {
     text: "Quest is a powerful growth engine that powered our entire Quest’s experience in our IRL event as well as mobile commerce experience. Our engagement & revenue grew as a result of seamless integration with Quest.",
@@ -47,7 +47,6 @@ const reviewsData = [
     Image: "https://www.questlabs.ai/assets/bitazza-kEZ2cS7b.svg",
   },
 ];
-
 const CustomerReviews = () => {
   return (
     <Box
@@ -62,9 +61,8 @@ const CustomerReviews = () => {
       <Heading>
         Don’t take our word for it. <br /> Trust our customers
       </Heading>
-
       <Flex
-        minW="500px"
+        minW="300px"
         p={7}
         pb={0}
         bg="black"
@@ -96,12 +94,12 @@ const CustomerReviews = () => {
           {reviewsData.map((review, index) => (
             <Box
               key={index}
-              w="40%"
+              w={{ base: "80%", sm: "60%", md: "40%" }}
               minW="250px"
               minH="300px"
               h="200px"
               p={5}
-              bg="gray.700"
+              bg="gray.900"
               boxShadow="md"
               borderRadius="20px"
               overflow="hidden"
@@ -145,5 +143,4 @@ const CustomerReviews = () => {
     </Box>
   );
 };
-
 export default CustomerReviews;
